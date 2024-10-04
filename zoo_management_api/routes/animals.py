@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
+import logging
 
 animals_blueprint = Blueprint('animals', __name__)
+logger = logging.getLogger(__name__)
 
 # In-memory storage for animals with initial data
 animals = [
@@ -25,7 +27,6 @@ animals = [
 @animals_blueprint.route('/animals', methods=['GET'])
 def get_animals():
     
-    logger.info("Entering get_animals function")
     return jsonify(animals), 200
 
 @animals_blueprint.route('/animals/<int:id>', methods=['GET'])

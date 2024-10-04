@@ -29,6 +29,14 @@ employees = [
         'phone': '123-456-7890',
         'role': 'Zookeeper',
         'schedule': 'Monday to Friday, 8 AM - 4 PM'
+    },
+    {
+        'id': 4,
+        'name': 'test',
+        'email': 'test@zoo.com',
+        'phone': '123-456-7890',
+        'role': 'Zookeeper',
+        'schedule': 'Monday to Friday, 8 AM - 4 PM'
     }
 ]
 
