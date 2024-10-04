@@ -104,3 +104,11 @@ venv.bak/
 
 # mkdocs documentation
 /site
+
+# poetry
+poetry.lock
+
+# Pyproject Toml
+pyproject.toml
+
+
