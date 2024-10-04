@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 # In-memory storage for employees
 employees = [
-    {
+        {
         'id': 1,
         'name': 'John Doe',
         'email': 'john.doe@zoo.com',
@@ -14,7 +14,28 @@ employees = [
         'role': 'Zookeeper',
         'schedule': 'Monday to Friday, 8 AM - 4 PM'
     }
+    
+        {
+        "id": 2,
+        "name": "Opong",
+        "email": "opong@zoo.com",
+        "phone": "123-456-7890",
+        "role": "Zookeeper",
+        "schedule": "Monday to Friday, 8 AM - 4 PM"
+    }
+        
+                {
+        "id": 3,
+        "name": "Ujang",
+        "email": "Ujang@zoo.com",
+        "phone": "123-456-7890",
+        "role": "Zookeeper",
+        "schedule": "Monday to Friday, 8 AM - 4 PM"
+    }
+        
+        
 ]
+
 
 @employees_blueprint.route('/employees', methods=['GET'])
 def get_employees():
