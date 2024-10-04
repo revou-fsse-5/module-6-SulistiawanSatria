@@ -20,10 +20,18 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Register blueprints
+logger.info("Registering blueprints...")
 app.register_blueprint(register_blueprint, url_prefix='/api')
 app.register_blueprint(login_blueprint, url_prefix='/api')
 app.register_blueprint(animals_blueprint, url_prefix='/api')
 app.register_blueprint(employees_blueprint, url_prefix='/api')
+logger.info("Blueprints registered successfully")
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logger.error(f"Unhandled exception: {str(e)}", exc_info=True)
+    return jsonify({"error": "Internal server error", "message": str(e)}), 500
+
 
 @app.route('/')
 def home():

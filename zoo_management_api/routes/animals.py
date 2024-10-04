@@ -24,6 +24,7 @@ animals = [
 
 @animals_blueprint.route('/animals', methods=['GET'])
 def get_animals():
+    logger.info("Entering get_animals function")
     return jsonify(animals), 200
 
 @animals_blueprint.route('/animals/<int:id>', methods=['GET'])
