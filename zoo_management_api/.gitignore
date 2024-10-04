@@ -111,4 +111,7 @@ poetry.lock
 # Pyproject Toml
 pyproject.toml
 
+# ... other entries ...
+db.json
+
 

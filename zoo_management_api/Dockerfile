@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy project files
 COPY . .
+COPY db.json* ./
 
 # Install Poetry and project dependencies
 RUN pip install --no-cache-dir poetry && \
