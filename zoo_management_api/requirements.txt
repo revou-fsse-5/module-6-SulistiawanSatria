@@ -1,0 +1,6 @@
+Flask==3.0.3
+Flask-RESTful==0.3.10
+Flask-JWT-Extended==4.6.0
+Flask-Swagger==0.2.14
+Flask-Swagger-UI==4.11.1
+PyJWT==2.9.0

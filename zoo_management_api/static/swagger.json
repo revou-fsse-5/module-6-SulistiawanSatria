@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Zoo Management API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/animals": {
+      "get": {
+        "summary": "Mendapatkan daftar semua hewan",
+        "responses": {
+          "200": {
+            "description": "Sukses"
+          }
+        }
+      },
+      "post": {
+        "summary": "Menambahkan hewan baru",
+        "responses": {
+          "201": {
+            "description": "Berhasil ditambahkan"
+          }
+        }
+      }
+    },
+    "/api/employees": {
+      "get": {
+        "summary": "Mendapatkan daftar semua karyawan",
+        "responses": {
+          "200": {
+            "description": "Sukses"
+          }
+        }
+      },
+      "post": {
+        "summary": "Menambahkan karyawan baru",
+        "responses": {
+          "201": {
+            "description": "Berhasil ditambahkan"
+          }
+        }
+      }
+    }
+  }
+}
