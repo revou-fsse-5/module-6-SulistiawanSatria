@@ -1,9 +1,8 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'kunci_rahasia_anda'
-    DEBUG = False
-
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    
 class DevelopmentConfig(Config):
     DEBUG = True
 

@@ -1,8 +1,9 @@
 import os
 from flask import Flask, jsonify, request
-from routes.employees_blueprint import employees_blueprint
+from routes.animals_blueprint import animals_blueprint
 import logging
 from config import config
+import json
 
 app = Flask(__name__)
 
@@ -15,8 +16,11 @@ logger = logging.getLogger(__name__)
 
 # Register blueprints
 logger.info("Registering blueprints...")
-app.register_blueprint(employees_blueprint, url_prefix='/api')
+app.register_blueprint(animals_blueprint, url_prefix='/api')
 logger.info("Blueprints registered successfully")
+
+# Pastikan path ke db.json benar
+DB_FILE = os.path.join(os.path.dirname(__file__), 'db.json')
 
 @app.errorhandler(Exception)
 def handle_exception(e):
@@ -28,7 +32,7 @@ def home():
     return jsonify({
         "message": "Selamat datang di API Manajemen Kebun Binatang!",
         "endpoints": {
-            "employees": "/api/employees"
+            "animals": "/api/animals"
         }
     })
 
@@ -52,6 +56,15 @@ def add_header(response):
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
     response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
     return response
+
+@app.route('/api/debug/db')
+def debug_db():
+    try:
+        with open(DB_FILE, 'r') as f:
+            data = json.load(f)
+        return jsonify({"db_content": data, "db_path": DB_FILE})
+    except Exception as e:
+        return jsonify({"error": str(e), "db_path": DB_FILE})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
