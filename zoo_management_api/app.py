@@ -1,14 +1,8 @@
-import sys
-sys.path.append('/app')
-
+import os
 from flask import Flask, jsonify, request
-from auth import register_blueprint, login_blueprint
-from routes import animals_blueprint, employees_blueprint
-from db import users
-
+from routes.employees_blueprint import employees_blueprint
 import logging
 from config import config
-import os
 
 app = Flask(__name__)
 
@@ -21,9 +15,6 @@ logger = logging.getLogger(__name__)
 
 # Register blueprints
 logger.info("Registering blueprints...")
-app.register_blueprint(register_blueprint, url_prefix='/api')
-app.register_blueprint(login_blueprint, url_prefix='/api')
-app.register_blueprint(animals_blueprint, url_prefix='/api')
 app.register_blueprint(employees_blueprint, url_prefix='/api')
 logger.info("Blueprints registered successfully")
 
@@ -32,16 +23,12 @@ def handle_exception(e):
     logger.error(f"Unhandled exception: {str(e)}", exc_info=True)
     return jsonify({"error": "Internal server error", "message": str(e)}), 500
 
-
 @app.route('/')
 def home():
     return jsonify({
         "message": "Selamat datang di API Manajemen Kebun Binatang!",
         "endpoints": {
-            "animals": "/api/animals",
-            "employees": "/api/employees",
-            "register": "/api/register",
-            "login": "/api/login"
+            "employees": "/api/employees"
         }
     })
 
