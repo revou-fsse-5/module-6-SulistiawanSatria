@@ -1,0 +1,167 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Zoo Management API",
+      "description": "API untuk mengelola jadwal pemberian makan dan laporan kebun binatang.",
+      "version": "1.0.0"
+    },
+    "host": "localhost:5000",
+    "schemes": ["http"],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Halaman utama",
+          "description": "Mengembalikan halaman utama aplikasi Zoo Management.",
+          "responses": {
+            "200": {
+              "description": "Halaman utama",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "/feedings": {
+        "get": {
+          "summary": "Mendapatkan semua jadwal pemberian makan",
+          "description": "Mengembalikan daftar semua jadwal pemberian makan di kebun binatang.",
+          "responses": {
+            "200": {
+              "description": "Daftar jadwal pemberian makan",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Feeding"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Menambahkan jadwal pemberian makan baru",
+          "description": "Menambahkan jadwal pemberian makan untuk hewan.",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Feeding"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Jadwal pemberian makan berhasil ditambahkan"
+            }
+          }
+        }
+      },
+      "/feedings/{id}": {
+        "get": {
+          "summary": "Mendapatkan jadwal pemberian makan berdasarkan ID",
+          "description": "Mengembalikan jadwal pemberian makan tertentu berdasarkan ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID dari jadwal pemberian makan"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detail jadwal pemberian makan",
+              "schema": {
+                "$ref": "#/definitions/Feeding"
+              }
+            },
+            "404": {
+              "description": "Jadwal pemberian makan tidak ditemukan"
+            }
+          }
+        },
+        "put": {
+          "summary": "Memperbarui jadwal pemberian makan",
+          "description": "Memperbarui informasi jadwal pemberian makan berdasarkan ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID dari jadwal pemberian makan"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Feeding"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Jadwal pemberian makan berhasil diperbarui"
+            },
+            "404": {
+              "description": "Jadwal pemberian makan tidak ditemukan"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Menghapus jadwal pemberian makan",
+          "description": "Menghapus jadwal pemberian makan berdasarkan ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID dari jadwal pemberian makan"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Jadwal pemberian makan berhasil dihapus"
+            },
+            "404": {
+              "description": "Jadwal pemberian makan tidak ditemukan"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Feeding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "animal_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "enclosure_id": {
+            "type": "integer",
+            "example": 2
+          },
+          "food_type": {
+            "type": "string",
+            "example": "Daging"
+          },
+          "feeding_time": {
+            "type": "string",
+            "example": "09:00 AM"
+          }
+        },
+        "required": ["animal_id", "enclosure_id", "food_type", "feeding_time"]
+      }
+    }
+  }
+  
